@@ -29,7 +29,7 @@ class Perceptron:
 
     def __call__(self, inputs: np.ndarray) -> float:
         dim = self._weights.shape[0]
-        assert len(inputs.shape) == 1 and inputs.shape[0] == dim
+        assert len(inputs.shape) == 1 and inputs.shape[0] == dim, f"Inputs must be a vector with shape ({dim}, )"
         weighted_sum = np.dot(inputs, self._weights) + self._bias
         result = weighted_sum
         if self._activation is not None:
