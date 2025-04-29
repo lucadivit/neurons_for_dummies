@@ -1,5 +1,6 @@
 import numpy as np
 from Activation import Activation
+from copy import deepcopy
 
 class Perceptron:
 
@@ -11,21 +12,29 @@ class Perceptron:
 
     @property
     def weights(self) -> np.ndarray:
-        return self._weights
+        return deepcopy(self._weights)
 
     @property
     def bias(self) -> float:
         return self._bias
 
+    @property
+    def activation(self) -> Activation:
+        return deepcopy(self._activation)
+
     @weights.setter
     def weights(self, weights: np.ndarray):
         dim = self._weights.shape[0]
         assert len(weights.shape) == 1 and weights.shape[0] == dim, f"Weights must be a vector with shape ({dim}, )"
-        self._weights = weights
+        self._weights = deepcopy(weights)
 
     @bias.setter
     def bias(self, bias: float):
         self._bias = bias
+
+    @activation.setter
+    def activation(self, activation: Activation):
+        self._activation = deepcopy(activation)
 
     def __call__(self, inputs: np.ndarray) -> float:
         dim = self._weights.shape[0]
