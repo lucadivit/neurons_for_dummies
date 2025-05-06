@@ -11,7 +11,7 @@ perceptron = Perceptron(dimension=2, activation=Sigmoid())
 perceptron.weights = np.array([0.5, 0.5])
 perceptron.bias = 1.
 
-cases = [[0, 0], [0, 1], [1, 0], [1, 1]]
+cases = [[0, 1], [1, 0], [0, 0], [1, 1]]
 true = [0, 0, 0, 1]
 
 metric = Accuracy()
