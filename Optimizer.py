@@ -55,6 +55,8 @@ class GradientDescent(Optimizer):
 
             if verbose:
                 print(Fore.YELLOW + f"---------------------- Train on Case {case} = {y} ----------------------")
+                print(Fore.MAGENTA + "Net Out =", net_output)
+                print(Fore.MAGENTA + "Sigma Out =", prediction)
                 print(Fore.MAGENTA + "dL/dpred =", dL_dpred)
                 print(Fore.MAGENTA + "dpred/dz =", dpred_dz)
                 print(Fore.MAGENTA + f"dL_dz = dL/dpred * dpred/dz = {dL_dpred} * {dpred_dz} = {dL_dz}")
