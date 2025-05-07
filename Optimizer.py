@@ -96,15 +96,18 @@ class GradientDescent(Optimizer):
                     print(Fore.MAGENTA + f"w{i} = w{i} - lr * dL_dw{i} = {w} - {self._lr} * {dL_dw} = {new_w}")
 
             new_weights = np.array(new_weights)
+            old_bias = perceptron.bias
+            old_weights = perceptron.weights
+            perceptron.weights = new_weights
+            perceptron.bias = new_bias
+            new_pred = perceptron(inputs=case)
+            error += self._error(true=y, pred=new_pred)
 
             if verbose:
                 print(Fore.MAGENTA + f"b = b - lr * dL_db = {bias} - {self._lr} * {dL_db} = {new_bias}")
-                print(Fore.MAGENTA + f"Old Weights = {perceptron.weights}, Old Bias = {perceptron.bias}")
+                print(Fore.MAGENTA + f"Old Weights = {old_weights}, Old Bias = {old_bias}")
                 print(Fore.MAGENTA + f"New Weights = {new_weights}, New Bias = {new_bias}")
-
-            perceptron.weights = new_weights
-            perceptron.bias = new_bias
-            error += self._error(true=y, pred=perceptron(inputs=case))
+                print(Fore.MAGENTA + f"New Prediction = {new_pred}")
 
         print(Style.RESET_ALL)
         return error
