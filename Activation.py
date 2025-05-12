@@ -14,7 +14,7 @@ class Activation(abc.ABC):
     def __repr__(self):
         raise NotImplementedError
 
-    def derive(self, x):
+    def derive(self, x) -> float|int:
         raise NotImplementedError
 
 class Heaviside(Activation):
@@ -25,7 +25,7 @@ class Heaviside(Activation):
             result = 0
         return result
 
-    def derive(self, x):
+    def derive(self, x) -> int:
         raise NotDifferentiableError(self.__class__.__name__)
 
     def __repr__(self) -> str:
@@ -33,7 +33,7 @@ class Heaviside(Activation):
 
 class Sigmoid(Activation):
 
-    def __call__(self, x: float) -> float|int:
+    def __call__(self, x: float) -> float:
         threshold = 700
         x = np.clip(x, -threshold, threshold)
         result = (1 / (1 + np.exp(-x))).item()
